@@ -13,7 +13,7 @@ public class Product extends Controller {
 		return ok(products.isEmpty() ? "No products" : products.toString());
 	}
 
-	public static Result details(String productId) {
+	public static Result detailsProduct(String productId) {
 		models.Product product = models.Product.find.where()
 				.eq("productId", productId).findUnique();
 
@@ -22,7 +22,7 @@ public class Product extends Controller {
 				.toString());
 	}
 
-	public static Result newProduct() {
+	public static Result addNewProduct() {
 		// create a product form and bind a request variable to it
 		Form<models.Product> productForm = Form.form(models.Product.class)
 				.bindFromRequest();
@@ -38,7 +38,7 @@ public class Product extends Controller {
 
 	}
 
-	public static Result delete(String productId) {
+	public static Result deleteProduct(String productId) {
 		// find a product with unique id
 		models.Product product = models.Product.find.where()
 				.eq("productId", productId).findUnique();

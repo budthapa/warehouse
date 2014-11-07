@@ -13,12 +13,12 @@ public class Tag extends Controller {
 				: ok(tags.toString()));
 	}
 	
-	public static Result details(String tagId){
+	public static Result detailsTag(String tagId){
 		models.Tag tags=models.Tag.find.where().eq("tagId", tagId).findUnique();
 		return (tags==null? notFound("Tags not found"):ok(tags.toString()));
 	}
 	
-	public static Result newTag(){
+	public static Result addNewTag(){
 		Form<models.Tag> tagForm=Form.form(models.Tag.class).bindFromRequest();
 		if(tagForm.hasErrors()){
 			return badRequest("Tag name cannot be 'tag'");
@@ -28,7 +28,7 @@ public class Tag extends Controller {
 		return ok(tag.toString());
 	}
 	
-	public static Result delete(String tagId){
+	public static Result deleteTag(String tagId){
 		models.Tag tag=models.Tag.find.where().eq("tagId", tagId).findUnique();
 		if(tag!=null){
 			tag.delete();
