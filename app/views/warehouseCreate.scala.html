@@ -1,0 +1,12 @@
+@(warehouseForm: Form[models.Warehouse])
+
+@import helper._
+
+@main("Add New Warehouse"){
+	@form(action=routes.Warehouse.addNewWarehouse()){
+		@inputText(warehouseForm("warehouseId"), '_label -> "Warehouse Id", 'placeholder -> "Warehouse Id")
+		@inputText(warehouseForm("warehouseName"), '_label -> "Name", 'placeholder -> "Warehouse Name")
+		<input type="submit" value="Create" />
+		<a href="@routes.Warehouse.addNewWarehouse()">Cancel</a>
+	}
+}

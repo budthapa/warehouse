@@ -1,0 +1,14 @@
+@(productForm: Form[models.Product])
+
+@import helper._
+
+@main("Create New Product"){
+	@form(action=routes.Product.addNewProduct()){
+		@inputText(productForm("productId"), '_label -> "Id")
+		@inputText(productForm("productName"), '_label -> "Name", 'placeholder -> "Product Name")
+		@inputText(productForm("description"), '_label -> "Description", 'placeholder -> "Description")
+		<input type="submit" value="Create" />
+		<a href="@routes.Application.index()">Cancel</a>
+			
+	}
+}

@@ -1,7 +1,33 @@
-@(message: String)
+@(warehouses: List[models.Warehouse], products: List[models.Product], stockItems: List[models.StockItem])
 
 @main("Welcome to Play") {
+<div>
+	<h2>Warehouse</h2>
+	@for(warehouseItem <- warehouses){
+		<ul>
+			<li><a href="@routes.Warehouse.detailsWarehouse(warehouseItem.primaryKey)">@warehouseItem.warehouseName</a></li>
+		</ul>
+	}
+</div>
 
-    @play20.welcome(message, style = "Java")
+<div>
+	<h2>Product</h2>
+	@for(productList <- products){
+		<ul>
+			<li><a href="@routes.Product.detailsProduct(productList.primaryKey)">@productList.productName</a></li>
+		</ul>
+	}
+	
+</div>
+
+<div>
+	<h2>Stock Items</h2>
+	@for(stock <- stockItems){
+		<ul>
+			<li><a href="@routes.StockItem.detailsStockItem(stock.primaryKey)">@stock.productName</li>
+		</ul>
+	
+	}
+</div>
 
 }

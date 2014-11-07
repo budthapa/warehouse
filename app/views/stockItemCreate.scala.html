@@ -1,0 +1,14 @@
+@(stockItemForm: Form[models.StockItem])
+
+@import helper._
+
+@main("Add Stock Item"){
+	@form(action=routes.StockItem.addNewStockItem()){
+		@inputText(stockItemForm("stockItemId"), '_label -> "Id", 'placeholder -> "Stock Item Id")
+		@inputText(stockItemForm("quantity"), '_label -> "Quantity", 'placeholder -> "Quantity")
+		@select(stockItemForm("productName"), options=options(models.Product.getProductNames()), '_default -> "Choose a product", '_label -> "Product")
+		@select(stockItemForm("warehouseName"), options(models.Warehouse.getWarehouseNames()), 'default -> "Choose a warehouse", '_label -> "Warehouse")
+		<input type="submit" value="Create" />
+		<a href="@routes.StockItem.addNewStockItem()">Cancel</a>
+	}
+}

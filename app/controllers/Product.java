@@ -5,17 +5,18 @@ import java.util.List;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.productCreate;
 
 public class Product extends Controller {
 	public static Result index() {
 		List<models.Product> products = models.Product.find.findList();
 
-		return ok(products.isEmpty() ? "No products" : products.toString());
+		return ok(products.isEmpty() ? "No products to display" : products.toString());
 	}
 
-	public static Result detailsProduct(String productId) {
+	public static Result detailsProduct(Long primaryKey) {
 		models.Product product = models.Product.find.where()
-				.eq("productId", productId).findUnique();
+				.eq("primaryKey", primaryKey).findUnique();
 
 		// return not found if product not found else return ok with product
 		return (product == null) ? notFound("No product found") : ok(product
@@ -28,7 +29,8 @@ public class Product extends Controller {
 				.bindFromRequest();
 		// validate the form
 		if (productForm.hasErrors()) {
-			return badRequest("Product Id or name is missing");
+//			return badRequest("Product Id or name is missing");
+			return badRequest(productCreate.render(productForm));
 		}
 
 		// form is ok, so make a product and save it.

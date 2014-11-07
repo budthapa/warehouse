@@ -1,0 +1,13 @@
+@(primaryKey: Long, editWarehouseForm: Form[models.Warehouse])
+
+@import helper._
+
+@main("Edit Warehouse"){
+	@form(action=routes.Warehouse.update(primaryKey)){
+		@inputText(editWarehouseForm("warehouseId"), '_label -> "Warehouse Id", 'placeholder -> "Warehouse Id")
+		@inputText(editWarehouseForm("warehouseName"), '_label -> "Warehouse Name", 'placeholder -> "Warehouse Name")
+		<input type="submit" value="Save Edit" />
+		<a href="@routes.Application.index()">Cancel</a>
+	
+	}
+}

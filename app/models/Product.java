@@ -24,7 +24,7 @@ public class Product extends Model{
 	public String productId;
 	
 	@Required
-	public String name;
+	public String productName;
 	public String description;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -33,16 +33,23 @@ public class Product extends Model{
 	@OneToMany(mappedBy="product", cascade=CascadeType.ALL)
 	public List<StockItem> stockItems=new ArrayList<>();
 	
-	public Product(String productId, String name, String description){
+	public Product(String productId, String productName, String description){
 		this.productId=productId;
-		this.name=name;
+		this.productName=productName;
 		this.description=description;
 	}
 	
 	public static Finder<Long, Product> find=new Finder<>(Long.class, Product.class);
 	
 	public String toString(){
-		return String.format("[Product %s %s %s]", productId, name, description);
+		return String.format("[Product %s %s %s]", productId, productName, description);
 	}
 
+	public static List<String> getProductNames(){
+		List<String> productNames=new ArrayList<>();
+		for(Product product : find.all()){
+			productNames.add(product.productName);
+		}
+		return productNames;
+	}
 }

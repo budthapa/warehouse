@@ -6,6 +6,7 @@ import java.util.List;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.*;
 
 public class StockItem extends Controller {
 	public static Result index(){
@@ -13,7 +14,7 @@ public class StockItem extends Controller {
 		return ok(stockItem.isEmpty()?"No Stock Item":stockItem.toString());
 	}
 	
-	public static Result detailsStockItem(String stockItemId){
+	public static Result detailsStockItem(Long stockItemId){
 		models.StockItem stockItem=models.StockItem.find.where().eq("stockItemId", stockItemId).findUnique();
 		return (stockItem==null? notFound("Item not found"): ok(stockItem.toString()));
 	}
@@ -21,7 +22,8 @@ public class StockItem extends Controller {
 	public static Result addNewStockItem(){
 		Form<models.StockItem> stockItemForm=Form.form(models.StockItem.class).bindFromRequest();
 		if(stockItemForm.hasErrors()){
-			return badRequest("Missing required field");
+//			return badRequest("Missing required field");
+			return badRequest(stockItemCreate.render(stockItemForm));
 		}
 		
 		models.StockItem stockItem=stockItemForm.get();

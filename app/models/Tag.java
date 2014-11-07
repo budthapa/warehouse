@@ -30,15 +30,24 @@ public class Tag extends Model {
 	}
 
 	/*
-	 * Tag name should not be "Tag", return error if user passes "Tag" as tag name
+	 * Tag name should not be "Tag", return error if user passes "Tag" as tag
+	 * name
 	 */
 	public String validate() {
 		return ("Tag".equals(this.tagId) ? "Invalid tag name" : null);
 	}
 
 	public static Finder<Long, Tag> find = new Finder<>(Long.class, Tag.class);
-	
-	public String toString(){
+
+	public String toString() {
 		return String.format("TagId : %s", tagId);
+	}
+
+	public static List<String> getTagnames() {
+		List<String> tags = new ArrayList<>();
+		for (Tag tag : find.all()) {
+			tags.add(tag.name);
+		}
+		return tags;
 	}
 }

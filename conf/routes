@@ -5,25 +5,33 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+
+# Warehouse operations
+GET		/warehouse/create			controllers.Warehouse.addNewWarehouse()
+GET		/warehouse					controllers.Warehouse.index()
+GET		/warehouse/:primaryKey		controllers.Warehouse.detailsWarehouse(primaryKey: Long)
+GET		/warehouse/:primaryKey		controllers.Warehouse.update(primaryKey: Long)
+DELETE	/warehouse/:warehouseId		controllers.Warehouse.deleteWarehouse(warehouseId: String)
+
+#Products operations
+GET		/products/create			controllers.Product.addNewProduct()
 GET		/products					controllers.Product.index()
-GET		/products/:productId		controllers.Product.detailsProduct(productId: String)
-POST	/products					controllers.Product.addNewProduct()
+GET		/products/:primaryKey		controllers.Product.detailsProduct(primaryKey: Long)
 DELETE	/products/:productId		controllers.Product.deleteProduct(productId: String)
+
+# Stock Items operations
+GET		/stockitem/create			controllers.StockItem.addNewStockItem()
+GET		/stockitem					controllers.StockItem.index()
+GET		/stockitem/:primaryKey		controllers.StockItem.detailsStockItem(primaryKey: Long)
+
+DELETE	/stockitem/:stockItemId		controllers.StockItem.deleteStockItem(stockItemId: String)
+
 
 GET		/tags						controllers.Tag.index()
 GET		/tags/:tagId				controllers.Tag.detailsTag(tagId: String)
-POST	/tags						controllers.Tag.addNewTag()
+GET		/tags/create					controllers.Tag.addNewTag()
 DELETE	/tags/:tagId				controllers.Tag.deleteTag(tagId: String)
 
-GET		/stockitem					controllers.StockItem.index()
-GET		/stockitem/:stockItemId		controllers.StockItem.detailsStockItem(stockItemId: String)
-POST	/stockitem					controllers.StockItem.addNewStockItem()
-DELETE	/stockitem/:stockItemId		controllers.StockItem.deleteStockItem(stockItemId: String)
-
-GET		/warehouse					controllers.Warehouse.index()
-GET		/warehouse/:warehouseId		controllers.Warehouse.detailsWarehouse(warehouseId: String)
-POST	/warehouse					controllers.Warehouse.addNewWarehouse()
-DELETE	/warehouse/:warehouseId		controllers.Warehouse.deleteWarehouse(warehouseId: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
