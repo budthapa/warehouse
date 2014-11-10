@@ -7,6 +7,7 @@
 		@inputText(editWarehouseForm("warehouseId"), '_label -> "Warehouse Id", 'placeholder -> "Warehouse Id")
 		@inputText(editWarehouseForm("warehouseName"), '_label -> "Warehouse Name", 'placeholder -> "Warehouse Name")
 		<input type="submit" value="Save Edit" />
+		<a href="@routes.Warehouse.deleteWarehouse(primaryKey)">Delete</a>
 		<a href="@routes.Application.index()">Cancel</a>
 	
 	}

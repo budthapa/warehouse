@@ -9,9 +9,11 @@ GET     /                           controllers.Application.index()
 # Warehouse operations
 GET		/warehouse/create			controllers.Warehouse.addNewWarehouse()
 GET		/warehouse					controllers.Warehouse.index()
+#Edit operations
 GET		/warehouse/:primaryKey		controllers.Warehouse.detailsWarehouse(primaryKey: Long)
-GET		/warehouse/:primaryKey		controllers.Warehouse.update(primaryKey: Long)
-DELETE	/warehouse/:warehouseId		controllers.Warehouse.deleteWarehouse(warehouseId: String)
+POST	/warehouse/:primaryKey		controllers.Warehouse.update(primaryKey: Long)
+#Delete operations
+GET	/warehouse/:primaryKey/delete		controllers.Warehouse.deleteWarehouse(primaryKey: Long)
 
 #Products operations
 GET		/products/create			controllers.Product.addNewProduct()
